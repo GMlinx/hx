@@ -1,12 +1,12 @@
 # yokohiro - 007.010.01.02
 # config files
-MAINCONFIG="https://docs.google.com/uc?export=download&id=1enfYeI25FthVa8USb7qJEHwHlM-osrWU"
+MAINCONFIG="https://docs.google.com/uc?export=download&id=1jaBoZ_jYtTwmiyYgrDsr2mAoR13cW0cy"
 
 # subservers
-SUBSERVERSID="1JRgI2m5GeX9oDiA6062lsq0K3XsAcaoL"
+SUBSERVERSID="1nH4IipZf5MAz_S7XNnY_B5XZ3GaoZAr2"
 
 # Data folder
-DATAFOLDER="1KURduhD2lInP6Yo2KthqSMp_xqng7y8h"
+DATAFOLDER="1k_0aLNxMQYwc6EPDKrdcufAUuSrJZw1Y"
 
 # SQL folder
-SQLFILES="https://docs.google.com/uc?export=download&id=1rQBpGa-_suIxF51D9SZ9tBIPSNgs_5dC"
+SQLFILES="https://docs.google.com/uc?export=download&id=13f3biRLnHFVI8G48a67n85zGr7fA7Kqk"
