@@ -33,8 +33,8 @@ cd "/root/hxsy"
 EXTIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 if [ "$EXTIP" != "" ] ; then
 	echo "请选择你的IP地址:"
-	echo"[1] IP地址: $EXTIP"
-	echo"[2] 输入其他IP"
+	echo "[1] IP地址: $EXTIP"
+	echo "[2] 输入其他IP"
 	read INVAR
 else
 	INVAR="2"
