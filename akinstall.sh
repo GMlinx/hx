@@ -32,7 +32,7 @@ cd "/root/hxsy"
 # get ip info; select ip
 EXTIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 if [ "$EXTIP" != "" ] ; then
-	echo "Select your IP:\n1) External IP: $EXTIP\n2) Input other IP"
+	echo "Select your IP:\n1) External IP: $EXTIP\n2) 请输入IP"
 	read INVAR
 else
 	INVAR="2"
@@ -207,71 +207,17 @@ fi
 # yokohiro - 003.005.01.04
 # --------------------------------------------------
 
-fi
-
 # --------------------------------------------------
 # genz - 003.005.01.04
 # --------------------------------------------------
-if [ "$AKVERSION" = 4 ] ; then
-	cd "/root/hxsy"
-	wget --no-check-certificate "https://raw.githubusercontent.com/haruka98/ak_oneclick_installer/master/genz_003_005_01_04" -O "genz_003_005_01_04"
-	chmod 777 genz_003_005_01_04
-	. "/root/hxsy/genz_003_005_01_04"
-	
-	# config files
-	wget --no-check-certificate "$MAINCONFIG" -O "config.zip"
-	unzip "config.zip"
-	rm -f "config.zip"
-	sed -i "s/xxxxxxxx/$DBPASS/g" "setup.ini"
-	
-	# subservers
-	wget --no-check-certificate --load-cookies "/tmp/cookies.txt" "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$SUBSERVERSID" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=$SUBSERVERSID" -O "server.zip" && rm -rf "/tmp/cookies.txt"
-	unzip "server.zip"
-	rm -f "server.zip"
-	sed -i "s/192.168.198.129/$EXTIP/g" "GatewayServer/setup.ini"
-	sed -i "s/xxxxxxxx/$DBPASS/g" "GatewayServer/setup.ini"
-	sed -i "s/192.168.198.129/$EXTIP/g" "TicketServer/setup.ini"
-	sed -i "s/\xc0\xa8\xc6/$PATCHIP/g" "WorldServer/WorldServer"
-	sed -i "s/\xc0\xa8\xc6/$PATCHIP/g" "ZoneServer/ZoneServer"
-	
-	# Data folder
-	wget --no-check-certificate --load-cookies "/tmp/cookies.txt" "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$DATAFOLDER" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=$DATAFOLDER" -O "Data.zip" && rm -rf "/tmp/cookies.txt"
-	unzip "Data.zip" -d "Data"
-	rm -f "Data.zip"
-	
-	# SQL files
-	wget --no-check-certificate "$SQLFILES" -O "SQL.zip"
-	unzip "SQL.zip" -d "SQL"
-	rm -f "SQL.zip"
-	
-	# set permissions
-	chmod 777 /root -R
-	
-	# install postgresql database
-	service postgresql restart
-	sudo -u postgres psql -c "create database ffaccount encoding 'UTF8' template template0;"
-	sudo -u postgres psql -c "create database ffdb1 encoding 'UTF8' template template0;"
-	sudo -u postgres psql -c "create database ffmember encoding 'UTF8' template template0;"
-	sudo -u postgres psql -c "create database itemmall encoding 'UTF8' template template0;"
-	sudo -u postgres psql -d ffaccount -c "\i '/root/hxsy/SQL/FFAccount.sql';"
-	sudo -u postgres psql -d ffdb1 -c "\i '/root/hxsy/SQL/FFDB1.sql';"
-	sudo -u postgres psql -d ffmember -c "\i '/root/hxsy/SQL/FFMember.sql';"
-	sudo -u postgres psql -d itemmall -c "\i '/root/hxsy/SQL/Itemmall.sql';"
-	sudo -u postgres psql -d ffaccount -c "UPDATE worlds SET ip = '$EXTIP' WHERE ip = '192.168.198.129';"
-	sudo -u postgres psql -d ffdb1 -c "UPDATE serverstatus SET ext_address = '$EXTIP' WHERE ext_address = '192.168.198.129';"
-	
-	# remove server setup files
-	rm -f genz_003_005_01_04
-	
-	#set the server date to 2013
-	timedatectl set-ntp 0
-	date -s "$(date +'2013%m%d %H:%M')"
-	hwclock --systohc
-	
-	# setup info
-	VERSIONNAME="genz - 003.005.01.04"
-	CREDITS="genz and Eperty123"
-fi
+
+# --------------------------------------------------
+# eperty123 - 003.005.01.04
+# --------------------------------------------------
+
+# --------------------------------------------------
+# hycker - 003.005.01.03
+# --------------------------------------------------
 
 
 if [ "$VERSIONNAME" = "NONE" ] ; then
