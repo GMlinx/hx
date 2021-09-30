@@ -43,7 +43,8 @@ if [ "$INVAR" = "2" ] ; then
 fi
 
 # select server version
-echo "Select the version you want to install.\n1) yokohiro - 007.010.01.02 (recommended)\n2) wangweijing1262 - 007.004.01.02\n3) 
+echo "Select the version you want to install.\n1) yokohiro - 007.010.01.02 (recommended)\n2) wangweijing1262 - 007.004.01.02\n3) yokohiro - 003.005.01.04\n4) genz - 003.005.01.04\n5) eperty123 - 003.005.01.04\n6) hycker - 003.005.01.03"
+read AKVERSION
 
 # make sure start / stop commands are working
 sudo apt-get -qq install psmisc -y
