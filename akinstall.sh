@@ -43,7 +43,7 @@ if [ "$INVAR" = "2" ] ; then
 fi
 
 # select server version
-echo "Select the version you want to install.\n1) 版号007.010.01.02 (recommended)\n2) 版号007.004.01.02\n3)　技术提供:妖雨 \n4)　　QQ：9846919 ) "
+echo "Select the version you want to install.\n1) 版号007.010.01.02 \n2) 版号007.004.01.02\n3))　　技术提供:　妖雨 \n4)　　QQ：9846919 ) "
 read AKVERSION
 
 # make sure start / stop commands are working
