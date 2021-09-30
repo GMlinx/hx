@@ -230,15 +230,16 @@ else
 # 显示信息屏幕
 echo "${LGREEN}-------------------------------------------- ------”
 echo "安装完成！"
-echo "------------------------------------------------ ——”
-echo "服务器版本：$VERSIONNAME"
-echo "服务器 IP: $EXTIP"
-echo "Postgresql 版本：$POSTGRESQLVERSION"
-echo "数据库用户：postgres"
-echo "数据库密码：$DBPASS"
-echo "服务器路径：/root/hxsy/"
-echo "Postgresql 配置路径：/etc/postgresql/$POSTGRESQLVERSION/main/"
-echo "\n一定要感谢 $CREDITS!"
-echo "\n要启动服务器，请运行 /root/hxsy/start"
-echo "要停止服务器，请运行 /root/hxsy/stop${RC}"
+echo "______________________________________________________________”
+echo "　　　　　　服务器版本：$VERSIONNAME"
+echo "　　　　　　服务器 IP: $EXTIP"
+echo "　　　　　　Postgresql 版本：$POSTGRESQLVERSION"
+echo "　　　　　　数据库用户：postgres"
+echo "　　　　　　数据库密码：$DBPASS"
+echo "　　　　　　服务器路径：/root/hxsy/"
+echo "　　　　　　Postgresql 配置路径：/etc/postgresql/$POSTGRESQLVERSION/main/"
+echo "　　　　　　　　　　　　　　　　　　妖雨技术提供
+echo "　　　　　　启动服务器，请运行 /root/hxsy/start"
+echo "　　　　　　停止服务器，请运行 /root/hxsy/stop${RC}"
+echo "______________________________________________________________”
 fi
