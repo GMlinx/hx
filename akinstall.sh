@@ -32,7 +32,9 @@ cd "/root/hxsy"
 # get ip info; select ip
 EXTIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 if [ "$EXTIP" != "" ] ; then
-	echo "请选择你的IP地址:\n1) IP地址: $EXTIP\n2) 输入其他IP"
+	echo "请选择你的IP地址:"
+	echo"[1] IP地址: $EXTIP"
+	echo"[2] 输入其他IP"
 	read INVAR
 else
 	INVAR="2"
@@ -43,7 +45,9 @@ if [ "$INVAR" = "2" ] ; then
 fi
 
 # select server version
-echo "Select the version you want to install.\n1) 版号007.010.01.02 \n2) 版号007.004.01.02\n3))　　技术提供:　妖雨 \n4)　　QQ：9846919 ) "
+echo "　　↓选择你要安装的版本↓　"
+echo "[1] 版本号：007.010.01.02 "
+echo "[2] 版本号：007.004.01.02"
 read AKVERSION
 
 # make sure start / stop commands are working
@@ -84,7 +88,7 @@ VERSIONNAME="NONE"
 # --------------------------------------------------
 if [ "$AKVERSION" = 1 ] ; then
 	cd "/root/hxsy"
-	wget --no-check-certificate "https://raw.githubusercontent.com/haruka98/ak_oneclick_installer/master/yokohiro_007_010_01_02" -O "yokohiro_007_010_01_02"
+	wget --no-check-certificate "https://raw.githubusercontent.com/GMlinx/hx/main/yokohiro_007_010_01_02" -O "yokohiro_007_010_01_02"
 	chmod 777 yokohiro_007_010_01_02
 	. "/root/hxsy/yokohiro_007_010_01_02"
 	
@@ -146,7 +150,7 @@ fi
 # --------------------------------------------------
 if [ "$AKVERSION" = 2 ] ; then
 	cd "/root/hxsy"
-	wget --no-check-certificate "https://raw.githubusercontent.com/haruka98/ak_oneclick_installer/master/wangweijing1262_007_004_01_02" -O "wangweijing1262_007_004_01_02"
+	wget --no-check-certificate "https://raw.githubusercontent.com/GMlinx/hx/main/wangweijing1262_007_004_01_02" -O "wangweijing1262_007_004_01_02"
 	chmod 777 wangweijing1262_007_004_01_02
 	. "/root/hxsy/wangweijing1262_007_004_01_02"
 	
