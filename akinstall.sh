@@ -32,7 +32,7 @@ cd "/root/hxsy"
 # get ip info; select ip
 EXTIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 if [ "$EXTIP" != "" ] ; then
-	echo "Select your IP:\n1) External IP: $EXTIP\n2) 请输入IP"
+	echo "请选择你的IP地址:\n1) External IP: $EXTIP\n2) 请输入IP"
 	read INVAR
 else
 	INVAR="2"
@@ -43,7 +43,7 @@ if [ "$INVAR" = "2" ] ; then
 fi
 
 # select server version
-echo "Select the version you want to install.\n1) yokohiro - 007.010.01.02 (recommended)\n2) wangweijing1262 - 007.004.01.02\n3) yokohiro - 003.005.01.04\n4) genz - 003.005.01.04\n5) eperty123 - 003.005.01.04\n6) hycker - 003.005.01.03"
+echo "Select the version you want to install.\n1) 版本一 - 007.010.01.02 (recommended)\n2) 版本二 - 007.004.01.02\n3) yokohiro - 003.005.01.04\n4) genz - 003.005.01.04\n5) eperty123 - 003.005.01.04\n6) hycker - 003.005.01.03"
 read AKVERSION
 
 # make sure start / stop commands are working
@@ -221,24 +221,24 @@ fi
 
 
 if [ "$VERSIONNAME" = "NONE" ] ; then
-	# display error
-	echo "${RED}--------------------------------------------------"
-	echo "Installation failed!"
-	echo "--------------------------------------------------"
-	echo "The selected version could not be installed. Please try again and choose a different version.${RC}"
+# 显示错误
+echo "${RED}-----------------------------------------------”
+echo "安装失败！"
+echo "-------------------------------------------------------”
+echo "无法安装所选版本。请重试并选择其他版本。${RC}"
 else
-	# display info screen
-	echo "${LGREEN}--------------------------------------------------"
-	echo "Installation complete!"
-	echo "--------------------------------------------------"
-	echo "Server version: $VERSIONNAME"
-	echo "Server IP: $EXTIP"
-	echo "Postgresql version: $POSTGRESQLVERSION"
-	echo "Database user: postgres"
-	echo "Database password: $DBPASS"
-	echo "Server path: /root/hxsy/"
-	echo "Postgresql configuration path: /etc/postgresql/$POSTGRESQLVERSION/main/"
-	echo "\nMake sure to thank $CREDITS!"
-	echo "\nTo start the server, please run /root/hxsy/start"
-	echo "To stop the server, please run /root/hxsy/stop${RC}"
+# 显示信息屏幕
+echo "${LGREEN}-------------------------------------------- ------”
+echo "安装完成！"
+echo "------------------------------------------------ ——”
+echo "服务器版本：$VERSIONNAME"
+echo "服务器 IP: $EXTIP"
+echo "Postgresql 版本：$POSTGRESQLVERSION"
+echo "数据库用户：postgres"
+echo "数据库密码：$DBPASS"
+echo "服务器路径：/root/hxsy/"
+echo "Postgresql 配置路径：/etc/postgresql/$POSTGRESQLVERSION/main/"
+echo "\n一定要感谢 $CREDITS!"
+echo "\n要启动服务器，请运行 /root/hxsy/start"
+echo "要停止服务器，请运行 /root/hxsy/stop${RC}"
 fi
