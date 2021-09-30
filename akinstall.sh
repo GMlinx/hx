@@ -18,8 +18,8 @@ sudo apt-get -qq install net-tools
 
 # test for the main folder
 if [ -d "/root/hxsy" ] ; then
-	echo "The folder /root/hxsy already exists, please rename or delete it before running the script."
-	echo "Delete existing folder? (y/n)"
+echo "文件夹/root/hxsy 已经存在，请在运行脚本前重命名或删除它。"
+echo "删除现有文件夹？(y/n)"
 	read INVAR
 	if [ "$INVAR" != "y" ] && [ "$INVAR" != "Y" ] ; then
 		exit
