@@ -32,18 +32,18 @@ cd "/root/hxsy"
 # get ip info; select ip
 EXTIP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 if [ "$EXTIP" != "" ] ; then
-	echo "请选择你的IP地址:\n1) External IP: $EXTIP\n2) 请输入IP"
+	echo "请选择你的IP地址:\n1) IP地址: $EXTIP\n2) 输入其他IP"
 	read INVAR
 else
 	INVAR="2"
 fi
 if [ "$INVAR" = "2" ] ; then
-	echo "Please enter IP:"
+	echo "请输入您需要设置的IP:"
 	read EXTIP
 fi
 
 # select server version
-echo "Select the version you want to install.\n1) 版本一 - 007.010.01.02 (recommended)\n2) 版本二 - 007.004.01.02\n3) yokohiro - 003.005.01.04\n4) genz - 003.005.01.04\n5) eperty123 - 003.005.01.04\n6) hycker - 003.005.01.03"
+echo "Select the version you want to install.\n1) 版号007.010.01.02 (recommended)\n2) 版号007.004.01.02\n3)技术提供:妖雨 \n4)QQ：9846919 \n5) \n6) "
 read AKVERSION
 
 # make sure start / stop commands are working
