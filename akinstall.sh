@@ -48,6 +48,7 @@ fi
 echo "　　↓选择你要安装的版本↓　"
 echo "[1] 版本号：007.010.01.02 "
 echo "[2] 版本号：007.004.01.02"
+echo "[3] 版本号：007.004.01.02"
 read AKVERSION
 
 # make sure start / stop commands are working
@@ -142,7 +143,7 @@ if [ "$AKVERSION" = 1 ] ; then
 	
 	# setup info
 	VERSIONNAME="yokohiro - 007.010.01.02"
-	CREDITS="yokohiro, Eperty123 and WangWeiJing1262"
+	CREDITS="　"
 fi
 
 # --------------------------------------------------
@@ -207,6 +208,64 @@ if [ "$AKVERSION" = 2 ] ; then
 	CREDITS="WangWeiJing1262"
 fi
 
+if [ "$AKVERSION" = 3 ] ; then
+	cd "/root/hxsy"
+	wget --no-check-certificate "https://raw.githubusercontent.com/GMlinx/hx/main/yaoyu__007_010_01_02" -O "yaoyu__007_010_01_02"
+	chmod 777 yaoyu__007_010_01_02
+	. "/root/hxsy/yaoyu__007_010_01_02"
+	
+	# config files
+	wget --no-check-certificate "$MAINCONFIG" -O "config.zip"
+	unzip "config.zip"
+	rm -f "config.zip"
+	sed -i "s/xxxxxxxx/$DBPASS/g" "setup.ini"
+	
+	# subservers
+	wget --no-check-certificate --load-cookies "/tmp/cookies.txt" "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$SUBSERVERSID" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=$SUBSERVERSID" -O "server.zip" && rm -rf "/tmp/cookies.txt"
+	unzip "server.zip"
+	rm -f "server.zip"
+	sed -i "s/192.168.178.59/$EXTIP/g" "GatewayServer/setup.ini"
+	sed -i "s/xxxxxxxx/$DBPASS/g" "GatewayServer/setup.ini"
+	sed -i "s/192.168.178.59/$EXTIP/g" "TicketServer/setup.ini"
+	sed -i "s/\xc0\xa8\xb2/$PATCHIP/g" "WorldServer/WorldServer"
+	sed -i "s/\xc0\xa8\xb2/$PATCHIP/g" "ZoneServer/ZoneServer"
+	
+	# Data folder
+	wget --no-check-certificate --load-cookies "/tmp/cookies.txt" "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$DATAFOLDER" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=$DATAFOLDER" -O "Data.zip" && rm -rf "/tmp/cookies.txt"
+	unzip "Data.zip" -d "Data"
+	rm -f "Data.zip"
+	
+	# SQL files
+	wget --no-check-certificate "$SQLFILES" -O "SQL.zip"
+	unzip "SQL.zip" -d "SQL"
+	rm -f "SQL.zip"
+	
+	# set permissions
+	chmod 777 /root -R
+	
+	# install postgresql database
+	service postgresql restart
+	sudo -u postgres psql -c "create database ffaccount encoding 'UTF8' template template0;"
+	sudo -u postgres psql -c "create database ffdb1 encoding 'UTF8' template template0;"
+	sudo -u postgres psql -c "create database ffmember encoding 'UTF8' template template0;"
+	sudo -u postgres psql -d ffaccount -c "\i '/root/hxsy/SQL/FFAccount.bak';"
+	sudo -u postgres psql -d ffdb1 -c "\i '/root/hxsy/SQL/FFDB1.bak';"
+	sudo -u postgres psql -d ffmember -c "\i '/root/hxsy/SQL/FFMember.bak';"
+	sudo -u postgres psql -d ffaccount -c "UPDATE worlds SET ip = '$EXTIP' WHERE ip = '192.168.178.59';"
+	sudo -u postgres psql -d ffdb1 -c "UPDATE serverstatus SET ext_address = '$EXTIP' WHERE ext_address = '192.168.178.59';"
+	
+	# remove server setup files
+	rm -f yaoyu__007_010_01_02
+	
+	#set the server date to 2013
+	timedatectl set-ntp 0
+	date -s "$(date +'2013%m%d %H:%M')"
+	hwclock --systohc
+	
+	# setup info
+	VERSIONNAME="yaoyu - 007.004.01.02"
+	CREDITS="yaoyu"
+fi
 # --------------------------------------------------
 # yokohiro - 003.005.01.04
 # --------------------------------------------------
@@ -226,15 +285,16 @@ fi
 
 if [ "$VERSIONNAME" = "NONE" ] ; then
 # 显示错误
-echo "${RED}-----------------------------------------------”
+echo "${RED}-----------------------------------------------"
 echo "安装失败！"
-echo "-------------------------------------------------------”
+echo "-------------------------------------------------------"
 echo "无法安装所选版本。请重试并选择其他版本。${RC}"
 else
 # 显示信息屏幕
-echo "${LGREEN}-------------------------------------------- ------”
-echo "安装完成！"
-echo "______________________________________________________________”
+echo "${LGREEN}------------------------------------------------"
+echo "安装完成"
+echo "______________________________________________________________"
+echo "　"
 echo "　　　　　　服务器版本：$VERSIONNAME"
 echo "　　　　　　服务器 IP: $EXTIP"
 echo "　　　　　　Postgresql 版本：$POSTGRESQLVERSION"
@@ -242,8 +302,9 @@ echo "　　　　　　数据库用户：postgres"
 echo "　　　　　　数据库密码：$DBPASS"
 echo "　　　　　　服务器路径：/root/hxsy/"
 echo "　　　　　　Postgresql 配置路径：/etc/postgresql/$POSTGRESQLVERSION/main/"
-echo "　　　　　　　　　　　　　　　　　　妖雨技术提供
+echo "　　　　　　妖雨技术提供"
 echo "　　　　　　启动服务器，请运行 /root/hxsy/start"
 echo "　　　　　　停止服务器，请运行 /root/hxsy/stop${RC}"
-echo "______________________________________________________________”
+echo "　"
+echo "______________________________________________________________"
 fi
