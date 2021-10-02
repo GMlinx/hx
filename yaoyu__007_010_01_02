@@ -1,0 +1,12 @@
+# yaoyu - 007.004.01.02
+# 配置文件
+MAINCONFIG="https://docs.google.com/uc?export=download&id=1m_IYefAf9TRsgyCymNz-YPKJvbbeHsiy"
+
+# 子服务器
+SUBSERVERSID="11q6YSfnS1HZ-Wy9eX_v6sv87WWiQupeR"
+
+#数据文件夹
+DATAFOLDER="1f1beiXgWCMUPUM-m1rebHcOPSXiQoW2b"
+
+#SQL文件夹
+SQLFILES="https://docs.google.com/uc?export=download&id=1XHcB4oRYTiUXqxwoX83rKC4Oh8pQVryF"
